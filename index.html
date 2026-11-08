@@ -1,0 +1,289 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#dcefe1">
+    <title>Operação Corrida | Camila</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #dcefe1, #b7d9c2);
+        }
+
+        .card {
+            width: 100%;
+            max-width: 440px;
+            padding: 35px 25px;
+            text-align: center;
+            background: #fff;
+            border-radius: 22px;
+            box-shadow: 0 12px 35px #254d3030;
+            animation: aparecer .6s ease;
+        }
+
+        .emoji {
+            margin-bottom: 15px;
+            font-size: 65px;
+        }
+
+        .tag {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 8px 15px;
+            border-radius: 30px;
+            background: #e1f4e6;
+            color: #287344;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        h1 {
+            margin-bottom: 18px;
+            color: #245c3b;
+            font-size: 26px;
+        }
+
+        p {
+            margin-bottom: 22px;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .detalhes {
+            margin-bottom: 20px;
+            padding: 17px;
+            border-radius: 15px;
+            background: #f2f8f3;
+            color: #45634d;
+            text-align: left;
+            font-size: 14px;
+            line-height: 2;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 10px;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform .2s, opacity .2s;
+        }
+
+        button:hover {
+            transform: scale(1.02);
+        }
+
+        button:focus-visible {
+            outline: 3px solid #245c3b;
+            outline-offset: 3px;
+        }
+
+        .botao-principal {
+            background: #32834e;
+            color: white;
+        }
+
+        .botao-secundario {
+            background: #edf3ee;
+            color: #45634d;
+        }
+
+        #resultado {
+            margin-top: 20px;
+            color: #32834e;
+            font-weight: bold;
+            line-height: 1.6;
+        }
+
+        .confete {
+            position: fixed;
+            top: -25px;
+            z-index: 10;
+            pointer-events: none;
+            animation: cair 3s linear forwards;
+        }
+
+        small {
+            display: block;
+            margin-top: 20px;
+            color: #aaa;
+        }
+
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes cair {
+            to {
+                transform: translateY(110vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: .01ms !important;
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="card" id="card">
+        <div class="emoji" aria-hidden="true">🏃‍♂️👟</div>
+
+        <span class="tag">PENDÊNCIA Nº 001</span>
+
+        <h1>Camila, temos uma pendência!</h1>
+
+        <p>
+            Pelo que me lembro, ainda existe uma corrida
+            que estamos devendo um ao outro.
+            <br><br>
+            Acho que já está na hora de resolver isso,
+            não acha?
+        </p>
+
+        <div class="detalhes">
+            📍 <strong>Destino:</strong> A definir<br>
+            🏃 <strong>Atividade:</strong> Corrida<br>
+            😂 <strong>Companhia:</strong> Eu, infelizmente<br>
+            📅 <strong>Data:</strong> A combinar
+        </div>
+
+        <p>Vamos finalmente tirar esse plano do papel?</p>
+
+        <button class="botao-principal" id="aceitar">
+            Bora quitar essa dívida 😂
+        </button>
+
+        <button class="botao-secundario" id="termos">
+            Antes, quero ver os termos 👀
+        </button>
+
+        <div id="resultado" aria-live="polite"></div>
+
+        <small>Departamento de Cobrança Esportiva © 2026</small>
+    </main>
+
+    <script>
+        const card = document.querySelector("#card");
+        const resultado = document.querySelector("#resultado");
+
+        const botaoAceitar = document.querySelector("#aceitar");
+        const botaoTermos = document.querySelector("#termos");
+
+        const termos = `
+            📋 Combinados da corrida
+            <br><br>
+            1. Sem competição, pelo menos no começo.
+            <br>
+            2. Ritmo a combinar.
+            <br>
+            3. Conversa liberada.
+            <br>
+            4. Reclamações permitidas durante o percurso.
+            <br><br>
+            Nada muito complicado. Só falta marcar! 😂
+        `;
+
+        botaoTermos.addEventListener("click", () => {
+            resultado.innerHTML = termos;
+        });
+
+        botaoAceitar.addEventListener("click", () => {
+            card.innerHTML = `
+                <div class="emoji" aria-hidden="true">🏆🏃‍♀️</div>
+
+                <span class="tag">ACORDO FECHADO</span>
+
+                <h1>Até que enfim, Camila!</h1>
+
+                <p>
+                    Depois de tanta enrolação, parece que
+                    essa corrida vai sair mesmo 😂
+                    <br><br>
+                    Agora só precisamos decidir o dia,
+                    o horário e onde vamos correr.
+                    <br><br>
+                    Prometo tentar acompanhar o ritmo.
+                </p>
+
+                <button class="botao-principal" id="combinar">
+                    Vamos marcar! 📱
+                </button>
+
+                <small>Agora não tem mais desculpa 👟</small>
+            `;
+
+            comemorar();
+            document.querySelector("#combinar")
+                .addEventListener("click", abrirWhatsApp);
+        });
+
+        function comemorar() {
+            const emojis = ["🏃", "🏆", "⭐", "🎉", "👟"];
+
+            for (let i = 0; i < 35; i++) {
+                const item = document.createElement("span");
+
+                item.className = "confete";
+                item.textContent = emojis[
+                    Math.floor(Math.random() * emojis.length)
+                ];
+
+                item.style.left = `${Math.random() * 100}vw`;
+                item.style.fontSize = "24px";
+                item.style.animationDuration = `${2 + Math.random() * 3}s`;
+
+                document.body.appendChild(item);
+
+                item.addEventListener("animationend", () => item.remove());
+            }
+        }
+
+        function abrirWhatsApp() {
+            const numero = "5547989138862";
+
+            const mensagem = encodeURIComponent(
+                "Aceitei quitar essa dívida da corrida 😂 Bora combinar o dia?"
+            );
+
+            window.open(
+                `https://wa.me/${numero}?text=${mensagem}`,
+                "_blank",
+                "noopener,noreferrer"
+            );
+        }
+    </script>
+
+</body>
+</html>
+```
